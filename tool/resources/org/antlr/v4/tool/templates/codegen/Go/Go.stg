@@ -454,7 +454,7 @@ p.SetState(<choice.stateNumber>)
 p.GetErrorHandler().Sync(p)
 la_ := p.GetInterpreter().AdaptivePredict(p.GetTokenStream(),<choice.decision>,p.GetParserRuleContext())
 <alts:{alt |
-if la_==<i><if(!choice.ast.greedy)>+1<endif> {
+if la_ == <i><if(!choice.ast.greedy)>+1<endif> {
 	<alt>
 }; separator="} else ">
 }
@@ -464,8 +464,8 @@ StarBlock(choice, alts, Sync, iteration) ::= <<
 p.SetState(<choice.stateNumber>)
 p.GetErrorHandler().Sync(p)
 _alt := p.GetInterpreter().AdaptivePredict(p.GetTokenStream(),<choice.decision>,p.GetParserRuleContext())
-for _alt!=<choice.exitAlt> && _alt!= antlr.ATNInvalidAltNumber {
-	if(_alt==1<if(!choice.ast.greedy)>+1<endif>) {
+for _alt != <choice.exitAlt> && _alt != antlr.ATNInvalidAltNumber {
+	if(_alt == 1<if(!choice.ast.greedy)>+1<endif>) {
 		<iteration>
 		<alts> <! should only be one !>
 	}
@@ -480,7 +480,7 @@ PlusBlock(choice, alts, error) ::= <<
 p.SetState(<choice.blockStartStateNumber>) <! alt block decision !>
 p.GetErrorHandler().Sync(p)
 _alt := 1<if(!choice.ast.greedy)>+1<endif>
-for ok := true; ok; ok = _alt!=<choice.exitAlt> && _alt!= antlr.ATNInvalidAltNumber {
+for ok := true; ok; ok = _alt != <choice.exitAlt> && _alt != antlr.ATNInvalidAltNumber {
 	switch _alt {
 	<alts:{alt|
 case <i><if(!choice.ast.greedy)>+1<endif>:
@@ -528,7 +528,7 @@ offsetShiftType(shiftAmount, offset) ::= <%
 
 // produces more efficient bytecode when bits.ttypes contains at most two items
 bitsetInlineComparison(s, bits) ::= <%
-<bits.ttypes:{ttype | <s.varName>==<parser.name><ttype>}; separator=" || ">
+<bits.ttypes:{ttype | <s.varName> == <parser.name><ttype>}; separator=" || ">
 %>
 
 cases(ttypes) ::= <<
@@ -904,7 +904,7 @@ _prevctx = localctx
 >>
 
 recRuleSetPrevCtx() ::= <<
-if p.GetParseListeners()!=nil {
+if p.GetParseListeners() != nil {
 	p.TriggerExitRuleEvent()
 }
 _prevctx = localctx
